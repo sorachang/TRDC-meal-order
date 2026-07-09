@@ -35,6 +35,7 @@ id_label.grid(row=0,column=0)
 date_label=tk.Label(root,text="")
 date_label.grid(row=1,column=0)
 date_label.config(text="Next Order : ")
+
 breakfast_label=tk.Label(root,text="Breakfast : ")
 breakfast_label.grid(row=2,column=0)
 breakfast_op=['NA','Breakfast']
@@ -49,23 +50,24 @@ lunch_box=ttk.Combobox(root,value=lunch_op)
 lunch_box.grid(row=3,column=1)
 lunch_box.current(4)
 
+dinner_label=tk.Label(root,text="Dinner : ")
+dinner_label.grid(row=4,column=0)
+dinner_op=['NA','D_A','D_B','D_Noodle','D_Vegan']
+dinner_box=ttk.Combobox(root,value=dinner_op)
+dinner_box.grid(row=4,column=1)
+dinner_box.current(0)
 
-
-
-class ORDER:
-    def __init__(self,lunch_index=17,url=0):
-        self.lunch_index=lunch_index
-        self.url=url
-        self.ID="IEC020337"
-        self.PW="Iec_0987654321234567890"
         
-def order(url,lunch="Louisa",breakfast="Breakfast"):
+def order(url,lunch="Louisa",breakfast="Breakfast",dinner="NA"):
     with open(os.path.join(path,'meal.json')) as f:
         MEAL=json.load(f)    
     lunch_index=MEAL[lunch]
     breakfast_index=MEAL[breakfast]
-    driver=webdriver.Edge()
-    ##driver=webdriver.Chrome()
+    dinner_index=MEAL[dinner]
+    try:
+        driver=webdriver.Edge()
+    except Exception:
+        driver=webdriver.Chrome()
     driver.get(url)
     time.sleep(1)
     if 'OrderDailyMeals' not in driver.current_url:
@@ -86,7 +88,7 @@ def order(url,lunch="Louisa",breakfast="Breakfast"):
         ## [0-1] 早餐 , [2-6] 自助A , [7-11] 自助B , [12-15] 麵食 , [16-17] L葷 , [18]L素
         ## [19-21] 水果 , [22-24] 特餐 , [25-26] 素食
 
-        while(True): ##LUNCH
+        while(lunch_index>=LUNCH): ##LUNCH
             try:
                 if 'Black' in btn[lunch_index].get_attribute('class') or 'Gray' in btn[lunch_index].get_attribute('class'):
                     raise Exception('此餐已訂完') ### Un-clickable button marks as Black or Gray, raise to exception
@@ -103,16 +105,38 @@ def order(url,lunch="Louisa",breakfast="Breakfast"):
                 #if '20:00後預訂' in err:
                 #    print('20:00後預訂')
                 if '此餐已訂完' in err: ## Choose other meal if out of order
-                    if lunch_index==LUNCH:
-                        break
-                    else:
-                        lunch_index-=1
+                    lunch_index-=1
                 elif '訂餐時間已過' in err:
                     break               
                 elif 'elementclickinterceptedexception' in err: ## Need to scoll the visable location to click button
                     pageY=driver.execute_script("return window.pageYOffset") 
                     driver.execute_script("window.scrollTo(0,"+str(pageY+350)+")") 
     
+    if dinner_index!=-1:
+        ##Dinner
+        DINNER=27
+        btn=driver.find_elements(By.XPATH,"//button[contains(@class,'button')]")
+        time.sleep(0.5)
+        while(dinner_index>=DINNER):
+            try:
+                if 'blue' in btn[dinner_index].get_attribute('class') or 'Blue' in btn[dinner_index].get_attribute('class'):
+                    btn[dinner_index].click()   
+                    time.sleep(0.5)
+                    driver.find_element(By.CLASS_NAME,"menu-active")
+                    driver.find_element(By.CLASS_NAME,"btn-m").click()
+                    break
+                else:
+                    raise Exception('此餐已訂完')          
+            except Exception as e:
+                err=str(e)
+                if 'elementclickinterceptedexception' in err:
+                    pageY=driver.execute_script("return window.pageYOffset") 
+                    driver.execute_script("window.scrollTo(0,"+str(pageY+350)+")") 
+                elif '此餐已訂完' in err: ## Choose other meal if out of order
+                    dinner_index-=1
+                elif '訂餐時間已過' in err:
+                    break  
+
     if breakfast_index!=-1:
         ##BREAKFAST
         btn=driver.find_elements(By.XPATH,"//button[contains(@class,'button')]")
@@ -157,16 +181,17 @@ def check_time():
             date_flag=today
             
         elif today_flag!=today and datetime.time(20,2,00)>now.time()>datetime.time(19,58,00): ## Only Work at 19:58~20:02           
-            #des_dt="2026-07-08"
+            #des_dt="2026-07-09"
             url="https://app.inventec.com/iservicepwa/OrderDailyMeals.html?dt="+des_dt+"&site=TRDC"
             lunch=lunch_box.get()
             breakfast=breakfast_box.get()
-            
-            if not(lunch=='NA' and breakfast=='NA'):
-                order(url,lunch,breakfast)
+            dinner=dinner_box.get()
+            if not(lunch=='NA' and breakfast=='NA' and dinner =='NA'):
+                order(url,lunch,breakfast,dinner)
             today_flag=today ## flag for order done
             lunch_box.current(4)
             breakfast_box.current(1)
+            dinner_box.current(0)
     root.after(1000,check_time) ## instead of while loop
     
 
