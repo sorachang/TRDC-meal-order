@@ -1,12 +1,79 @@
 {
         "NA" : -1,
         "Breakfast" : 1,
-        "A" : 6,
-        "B" : 11,
-        "Noodle" : 15,
-        "Louisa" : 17,
-        "Louisa Veg" : 18,
-        "Special" : 21,
-        "Fruit" : 24,
-        "Vegan" :26
+        "Normal" :{
+                "Lunch" :{
+                        "A" : 6,
+                        "B" : 11,
+                        "Noodle" : 15,
+                        "Louisa" : 17,
+                        "Louisa Veg" : 18,
+                        "Fruit" : 21,
+                        "Special" : 24,
+                        "Vegan" :26
+                },
+                "Dinner" :{
+                        "D_A" : 29,
+                        "D_B" : 32,
+                        "D_Noodle" : 34,
+                        "D_Vegan" : 35
+                }
+        },
+        "Brunch" :{
+                "Lunch" :{     
+                        "A" : 6,
+                        "B" : 11,
+                        "Noodle" : 15,
+                        "Louisa" : 17,
+                        "Louisa Veg" : 18,
+                        "Fruit" : 21,
+                        "Special" : 24, 
+                        "Brunch" : 27,
+                        "Vegan" :29
+                },
+                "Dinner" :{
+                        "D_A" : 32,
+                        "D_B" : 35,
+                        "D_Noodle" : 37,
+                        "D_Vegan" : 38
+                }
+        },
+        "Car" :{      
+                "Lunch" :{    
+                        "A" : 6,
+                        "B" : 11,
+                        "Noodle" : 15,
+                        "Louisa" : 17,
+                        "Louisa Veg" : 18,
+                        "Fruit" : 21,
+                        "Special" : 24,
+                        "Vegan" :26,
+                        "CarFood" : 31
+                },
+                "Dinner" :{
+                        "D_A" : 34,
+                        "D_B" : 37,
+                        "D_Noodle" : 39,
+                        "D_Vegan" : 40
+                }
+        },
+        "Mos" :{    
+                "Lunch" :{    
+                        "A" : 6,
+                        "B" : 11,
+                        "Noodle" : 15,
+                        "Louisa" : 17,
+                        "Louisa Veg" : 18,
+                        "Fruit" : 21,
+                        "Special" : 24,
+                        "Mos" : 26,
+                        "Vegan" : 28
+                },
+                "Dinner" :{
+                        "D_A" : 31,
+                        "D_B" : 34,
+                        "D_Noodle" : 36,
+                        "D_Vegan" : 37 
+                }
+        }
 }
