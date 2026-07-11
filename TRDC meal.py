@@ -102,9 +102,10 @@ def tk_init(url,weekday):
     elif weekday==4: #Friday
             tmp_lunch=MEAL['Mos']['Lunch']
             tmp_dinner=MEAL['Mos']['Dinner'] 
-    lunch_op=list(tmp_lunch.keys())
+    lunch_op=['NA']+list(tmp_lunch.keys())
     lunch_box['values']=lunch_op
     lunch_box.current(4)
+    ## 4 = LOUISA
     
     global TODAY_MEAL
     TODAY_MEAL['NA']=-1
@@ -181,6 +182,7 @@ def order(url,lunch="Louisa",breakfast="Breakfast",dinner="NA"):
                     time.sleep(0.5)
                     driver.find_element(By.CLASS_NAME,"menu-active")
                     driver.find_element(By.CLASS_NAME,"btn-m").click()
+                    time.sleep(1)
                     break
                 else:
                     raise Exception('此餐已訂完')          
@@ -224,6 +226,7 @@ def order(url,lunch="Louisa",breakfast="Breakfast",dinner="NA"):
 def check_time():
     global date_flag,today_flag,des_dt,url
     now=datetime.datetime.now()
+    #now-=datetime.timedelta(days=1)
     today=now.weekday() # 0=Mon , 6=Sun
     
     if tw_holidays.is_working_day(now.date()): ## Only Work at working days
@@ -241,7 +244,7 @@ def check_time():
             root.update()
             date_flag=today
             
-        elif today_flag!=today and datetime.time(20,2,00)>now.time()>datetime.time(19,58,00): ## Only Work at 19:58~20:02           
+        elif today_flag!=today and datetime.time(20,2,00)>now.time()>datetime.time(9,58,00): ## Only Work at 19:58~20:02           
             #des_dt="2026-07-09"
             #url="https://app.inventec.com/iservicepwa/OrderDailyMeals.html?dt="+des_dt+"&site=TRDC"
             lunch=lunch_box.get()
