@@ -244,7 +244,7 @@ def check_time():
             root.update()
             date_flag=today
             
-        elif today_flag!=today and datetime.time(20,2,00)>now.time()>datetime.time(9,58,00): ## Only Work at 19:58~20:02           
+        elif today_flag!=today and datetime.time(20,2,00)>now.time()>datetime.time(19,58,00): ## Only Work at 19:58~20:02           
             #des_dt="2026-07-09"
             #url="https://app.inventec.com/iservicepwa/OrderDailyMeals.html?dt="+des_dt+"&site=TRDC"
             lunch=lunch_box.get()
