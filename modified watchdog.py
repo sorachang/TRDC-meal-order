@@ -28,7 +28,7 @@ class Handler(FileSystemEventHandler):
             mfile=event.src_path
             if 'TRDC meal.py' in mfile or 'login.json' in mfile:
                 self.run_new()
-            elif os.path.dirname(os.path.abspath(__file__)) in mfile:
+            elif 'modified watchdog.py' in mfile:
                 try:
                     self.destroy()
                     subprocess.Popen(['python','modified watchdog.py'])#
