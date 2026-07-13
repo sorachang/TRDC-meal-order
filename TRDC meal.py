@@ -66,7 +66,6 @@ def tk_init(url,weekday):
     WED=''
     tmp_lunch=''
     tmp_dinner=''
-    weekday=4
     with open(os.path.join(path,'meal.json')) as f:
         MEAL=json.load(f)
     
