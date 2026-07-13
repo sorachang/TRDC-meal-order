@@ -31,7 +31,7 @@ class Handler(FileSystemEventHandler):
             elif 'modified watchdog.py' in mfile:
                 try:
                     self.destroy()
-                    subprocess.Popen(['python','modified watchdog.py'])#
+                    subprocess.Popen(['python','modified watchdog.py'])
                     raise KeyboardInterrupt
                 except KeyboardInterrupt:
                     self.observer.stop()
