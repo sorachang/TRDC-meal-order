@@ -39,7 +39,7 @@ class Handler(FileSystemEventHandler):
         self.process.terminate()
          
 if __name__=='__main__':
-    path=os.path.dirname(os.path.abspath(__file__)) 
+    path=os.path.dirname(os.path.abspath(__file__)) #
     observer=Observer() ##監控
     event_handler=Handler(observer) 
     observer.schedule(event_handler,path=path,recursive=True)#
