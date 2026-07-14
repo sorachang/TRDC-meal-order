@@ -172,10 +172,10 @@ def order(url,lunch="Louisa",breakfast="Breakfast",dinner="NA"):
     if dinner_index!=-1:
         ##Dinner
         DINNER_flag=TODAY_MEAL['D_A']-2
-        btn=driver.find_elements(By.XPATH,"//button[contains(@class,'button')]")
-        time.sleep(0.5)
         while(dinner_index>=DINNER_flag):
             try:
+                btn=driver.find_elements(By.XPATH,"//button[contains(@class,'button')]")
+                time.sleep(0.5)
                 if 'blue' in btn[dinner_index].get_attribute('class') or 'Blue' in btn[dinner_index].get_attribute('class'):
                     btn[dinner_index].click()   
                     time.sleep(0.5)
@@ -198,10 +198,10 @@ def order(url,lunch="Louisa",breakfast="Breakfast",dinner="NA"):
     if breakfast_index!=-1:
         ##BREAKFAST
         BREAKFAST_flag=0
-        btn=driver.find_elements(By.XPATH,"//button[contains(@class,'button')]")
-        time.sleep(0.5)
         while(breakfast_index>=BREAKFAST_flag):
             try:
+                btn=driver.find_elements(By.XPATH,"//button[contains(@class,'button')]")
+                time.sleep(0.5)
                 if 'blue' in btn[breakfast_index].get_attribute('class') or 'Blue' in btn[breakfast_index].get_attribute('class'):
                     btn[breakfast_index].click()   
                     time.sleep(0.5)
