@@ -116,6 +116,8 @@ def tk_init(url,weekday):
     dinner_op=['NA']+list(tmp_dinner.keys())
     dinner_box['values']=dinner_op
     dinner_box.current(0)
+
+    ### Refer to meal.json
     
     global TODAY_MEAL
     TODAY_MEAL['NA']=-1
@@ -153,8 +155,7 @@ def order(url,lunch="Louisa",breakfast="Breakfast",dinner="NA"):
         time.sleep(0.5)
         
         LUNCH_flag=TODAY_MEAL['A']-2
-        ## [0-1] 早餐 , [2-6] 自助A , [7-11] 自助B , [12-15] 麵食 , [16-17] L葷 , [18]L素
-        ## [19-21] 水果 , [22-24] 特餐 , [25-26] 素食
+        
 
         while(lunch_index>=LUNCH_flag): ##LUNCH
             try:
