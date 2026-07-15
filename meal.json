@@ -72,8 +72,7 @@
                 "Dinner" :{
                         "D_A" : 31,
                         "D_B" : 34,
-                        "D_Noodle" : 36,
-                        "D_Vegan" : 37 
+                        "D_Vegan" : 35 
                 }
         }
 }
