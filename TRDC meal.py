@@ -183,8 +183,10 @@ def order(url,lunch="Louisa",breakfast="Breakfast",dinner="NA"):
                     driver.find_element(By.CLASS_NAME,"btn-m").click()
                     time.sleep(1)
                     break
+                elif 'Black' in btn[lunch_index].get_attribute('class') or 'Gray' in btn[lunch_index].get_attribute('class'):
+                    raise Exception('此餐已訂完')
                 else:
-                    raise Exception('此餐已訂完')          
+                    raise Exception('Wait Page Response...')
             except Exception as e:
                 err=str(e)
                 if 'elementclickinterceptedexception' in err:
@@ -208,8 +210,10 @@ def order(url,lunch="Louisa",breakfast="Breakfast",dinner="NA"):
                     driver.find_element(By.CLASS_NAME,"menu-active")
                     driver.find_element(By.CLASS_NAME,"btn-m").click()
                     break
+                elif 'Black' in btn[lunch_index].get_attribute('class') or 'Gray' in btn[lunch_index].get_attribute('class'):
+                    raise Exception('此餐已訂完')
                 else:
-                    raise Exception('此餐已訂完')          
+                    raise Exception('Wait Page Response...')       
             except Exception as e:
                 err=str(e)
                 if 'elementclickinterceptedexception' in err:
