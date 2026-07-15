@@ -55,10 +55,11 @@ lunch_box.grid(row=3,column=1)
 
 dinner_label=tk.Label(root,text="Dinner : ")
 dinner_label.grid(row=4,column=0)
-dinner_op=['NA','D_A','D_B','D_Noodle','D_Vegan']
+#dinner_op=['NA','D_A','D_B','D_Noodle','D_Vegan']
+dinner_op=[]
 dinner_box=ttk.Combobox(root,value=dinner_op)
 dinner_box.grid(row=4,column=1)
-dinner_box.current(0)
+#dinner_box.current(0)
 
 TODAY_MEAL={}
 
@@ -105,6 +106,10 @@ def tk_init(url,weekday):
     lunch_box['values']=lunch_op
     lunch_box.current(4)
     ## 4 = LOUISA
+
+    dinner_op=['NA']+list(tmp_dinner.keys())
+    dinner_box['values']=dinner_op
+    dinner_box.current(0)
     
     global TODAY_MEAL
     TODAY_MEAL['NA']=-1
