@@ -24,13 +24,17 @@ except ImportError:
 path=os.path.dirname(os.path.abspath(__file__))
 with open(os.path.join(path,'login.json')) as f:
     EMPLOYEE=json.load(f)    
+
+#### Global parameters
 tw_holidays=holidays.TW()
-root=tk.Tk()
 today_flag=-1
 date_flag=-1
 des_dt=""
 url=""
+TODAY_MEAL={}
 
+##### TK init
+root=tk.Tk()
 root.title("TRDC ORDER")
 id_label=tk.Label(root,text=EMPLOYEE["ID"][:3]+"*"*3+EMPLOYEE["ID"][-3:])
 id_label.grid(row=0,column=0)
@@ -61,7 +65,9 @@ dinner_box=ttk.Combobox(root,value=dinner_op)
 dinner_box.grid(row=4,column=1)
 #dinner_box.current(0)
 
-TODAY_MEAL={}
+##### TK 
+
+
 
 def tk_init(url,weekday):
     WED=''
