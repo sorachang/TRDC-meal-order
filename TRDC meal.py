@@ -111,7 +111,7 @@ def tk_init(url,weekday):
     lunch_op=['NA']+list(tmp_lunch.keys())
     lunch_box['values']=lunch_op
     lunch_box.current(4)
-    ## 4 = LOUISA
+    ## 4 = LOUISA 9 = 211
 
     dinner_op=['NA']+list(tmp_dinner.keys())
     dinner_box['values']=dinner_op
