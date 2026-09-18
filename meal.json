@@ -29,13 +29,14 @@
                         "Fruit" : 21,
                         "Special" : 24, 
                         "Brunch" : 27,
-                        "Vegan" :29
+                        "211" : 30,
+                        "Vegan" : 32
                 },
                 "Dinner" :{
-                        "D_A" : 32,
-                        "D_B" : 35,
-                        "D_Noodle" : 37,
-                        "D_Vegan" : 38
+                        "D_A" : 35,
+                        "D_B" : 38,
+                        "D_Noodle" : 40,
+                        "D_Vegan" : 41
                 }
         },
         "Car" :{      
@@ -47,14 +48,15 @@
                         "Louisa Veg" : 18,
                         "Fruit" : 21,
                         "Special" : 24,
-                        "Vegan" :26,
-                        "CarFood" : 31
+                        "Mos" : 26,
+                        "Vegan" : 28,
+                        "CarFood" : 33
                 },
                 "Dinner" :{
-                        "D_A" : 34,
-                        "D_B" : 37,
-                        "D_Noodle" : 39,
-                        "D_Vegan" : 40
+                        "D_A" : 36,
+                        "D_B" : 39,
+                        "D_Noodle" : 41,
+                        "D_Vegan" : 42
                 }
         },
         "Mos" :{    

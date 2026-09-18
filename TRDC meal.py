@@ -134,8 +134,8 @@ def order(url,lunch="Louisa",breakfast="Breakfast",dinner="NA"):
     breakfast_index=TODAY_MEAL[breakfast]
     dinner_index=TODAY_MEAL[dinner]
     try:
-        #driver=webdriver.Edge()
-        driver=webdriver.Chrome()
+        driver=webdriver.Edge()
+        #driver=webdriver.Chrome()
     except Exception:
         driver=webdriver.Chrome()
     driver.get(url)
