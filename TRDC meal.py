@@ -86,9 +86,10 @@ def tk_init(url,weekday):
         options=Options()
         options.add_argument("--headless")
         try:
-            driver=webdriver.Edge(options=options)
+            driver=webdriver.Edge()
         except Exception:
-            driver=webdriver.Chrome(options=options)
+            driver=webdriver.Edge(options=options)
+            #driver=webdriver.Chrome(options=options)
         driver.get(url)
         time.sleep(1)
         if 'OrderDailyMeals' not in driver.current_url:
@@ -99,12 +100,13 @@ def tk_init(url,weekday):
             driver.get(url)
             time.sleep(1)
         WED=driver.find_elements(By.XPATH,"//div[contains(@class,'mb-0')]")
-        if len(WED)==14: ## Car Food
+        if len(WED)==15: ## ALL days MEAL TYPE =15(breakfast :1, Lunch : 10, dinner : 4) = Car Food
             tmp_lunch=MEAL['Car']['Lunch']
             tmp_dinner=MEAL['Car']['Dinner']  
         else:
             tmp_lunch=MEAL['Normal']['Lunch']
-            tmp_dinner=MEAL['Normal']['Dinner']  
+            tmp_dinner=MEAL['Normal']['Dinner']
+        driver.close()  
     elif weekday==4: #Friday
             tmp_lunch=MEAL['Mos']['Lunch']
             tmp_dinner=MEAL['Mos']['Dinner'] 
@@ -137,7 +139,8 @@ def order(url,lunch="Louisa",breakfast="Breakfast",dinner="NA"):
         driver=webdriver.Edge()
         #driver=webdriver.Chrome()
     except Exception:
-        driver=webdriver.Chrome()
+        driver=webdriver.Edge()
+        #driver=webdriver.Chrome()
     driver.get(url)
     time.sleep(1)
     if 'OrderDailyMeals' not in driver.current_url:
@@ -235,7 +238,13 @@ def order(url,lunch="Louisa",breakfast="Breakfast",dinner="NA"):
                 elif '訂餐時間已過' in err:
                     break  
         #driver.quit()
-    driver.close()
+    try:
+        driver.find_element(By.CLASS_NAME,"menu-active")
+        driver.find_element(By.CLASS_NAME,"btn-m").click()
+    except:
+        pass
+    finally:
+        driver.close()
    
 
 def check_time():
