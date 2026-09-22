@@ -104,8 +104,8 @@ def tk_init(url,weekday):
             tmp_lunch=MEAL['Car']['Lunch']
             tmp_dinner=MEAL['Car']['Dinner']  
         else:
-            tmp_lunch=MEAL['Normal']['Lunch']
-            tmp_dinner=MEAL['Normal']['Dinner']
+            tmp_lunch=MEAL['Mos']['Lunch']
+            tmp_dinner=MEAL['Mos']['Dinner']
         driver.close()  
     elif weekday==4: #Friday
             tmp_lunch=MEAL['Mos']['Lunch']
